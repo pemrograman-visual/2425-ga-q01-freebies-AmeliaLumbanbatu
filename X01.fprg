@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="X01"/>
+        <attribute name="authors" value="ACER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-09 04:37:54 PM"/>
+        <attribute name="created" value="QUNFUjtMQVBUT1AtSVJTVEE1RVQ7MjAyNC0xMC0wOTswMzoxMDoxMiBQTTsyNjU0"/>
+        <attribute name="edited" value="QUNFUjtMQVBUT1AtSVJTVEE1RVQ7MjAyNC0xMC0wOTswNDozNzo1NCBQTTsxOzI3Nzg="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="HargaBuku, TotalHarga, HargaBukuTermurah, TotalPembayaran" type="Real" array="False" size=""/>
+            <input variable="HargaBuku"/>
+            <assign variable="TotalHarga" expression="HargaBuku"/>
+            <assign variable="HargaBukuTermurah" expression="HargaBuku"/>
+            <while expression="HargaBuku!=0">
+                <if expression="HargaBukuTermurah&lt;HargaBuku">
+                    <then>
+                        <assign variable="HargaBukuTermurah" expression="HargaBukuTermurah"/>
+                    </then>
+                    <else>
+                        <assign variable="HargaBukuTermurah" expression="HargaBuku"/>
+                    </else>
+                </if>
+                <input variable="HargaBuku"/>
+                <assign variable="TotalHarga" expression="TotalHarga+HargaBuku"/>
+            </while>
+            <if expression="TotalHarga&gt;=100">
+                <then>
+                    <assign variable="TotalPembayaran" expression="TotalHarga-HargaBukuTermurah"/>
+                </then>
+                <else>
+                    <assign variable="TotalPembayaran" expression="TotalHarga"/>
+                </else>
+            </if>
+            <output expression="ToFixed(TotalPembayaran,2)" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
